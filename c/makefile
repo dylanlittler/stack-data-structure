@@ -1,7 +1,7 @@
 CFLAGS=-Wall -Werror -g
 
-all: stack
+all: int_stack
 
 clean:
 	rm -rf *~ # Remove Emacs temp files
-	rm -rf stack
+	rm -rf int_stack
