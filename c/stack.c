@@ -8,9 +8,18 @@
 /* Stack struct definition with counter, and pointer
  * to dynamically sized array of ints. */
 struct Stack {
-  int size_limit;
-  int top;
-  int *stack_array;
+  int int_size_limit;
+  int double_size_limit;
+  int char_size_limit;
+  int string_size_limit;
+  int int_top;
+  int double_top;
+  int char_top;
+  int string_top;
+  int *int_array;
+  int *double_array;
+  int *char_array;
+  int *string_array;
 };
 
 void Stack_destroy(struct Stack *stack);

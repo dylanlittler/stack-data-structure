@@ -46,7 +46,8 @@ int Stack_pop(struct Stack *stack) {
 
 struct Stack *Stack_create(int size_limit) {
   /* Initialises memory for Stack struct and returns pointer. */
-  struct Stack *new_stack = malloc(size_limit * (sizeof(new_stack->stack_array) + sizeof(int) * 2));
+  //struct Stack *new_stack = malloc(size_limit * (sizeof(new_stack->stack_array) + sizeof(int) * 2));
+  struct Stack *new_stack = malloc(sizeof(struct Stack));
   new_stack->size_limit = size_limit;
   new_stack->top = 0;
   new_stack->stack_array = malloc(sizeof(new_stack->stack_array) * size_limit);
