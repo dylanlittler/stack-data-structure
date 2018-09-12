@@ -8,18 +8,9 @@
 /* Stack struct definition with counter, and pointer
  * to dynamically sized array of ints. */
 struct Stack {
-  int int_size_limit;
-  int double_size_limit;
-  int char_size_limit;
-  int string_size_limit;
-  int int_top;
-  int double_top;
-  int char_top;
-  int string_top;
-  int *int_array;
-  int *double_array;
-  int *char_array;
-  int *string_array;
+  int size_limit;
+  int top;
+  int *stack_array;
 };
 
 void Stack_destroy(struct Stack *stack);
@@ -75,12 +66,19 @@ int main(int argc, char *argv[]) {
   int i = 0;
   int current_item = 0;
   
-  struct Stack *test_stack = Stack_create(10);
-  for (i = 1; i < argc; i++) {
+  if (argc < 3) {
+    printf("Need int_stack.c, stack_size, [items]\n");
+    exit(1);
+  }
+    
+  int stack_size = atoi(argv[1]);
+  
+  struct Stack *test_stack = Stack_create(stack_size);
+  for (i = 2; i < argc; i++) {
     Stack_push(test_stack, atoi(argv[i]));
   }
 
-  for (i = 1; i < argc; i++) {
+  for (i = 2; i < argc; i++) {
     current_item = Stack_pop(test_stack);
     printf("Current_item: %d\n", current_item);
   }
