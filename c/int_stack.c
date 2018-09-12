@@ -46,7 +46,6 @@ int Stack_pop(struct Stack *stack) {
 
 struct Stack *Stack_create(int size_limit) {
   /* Initialises memory for Stack struct and returns pointer. */
-  //struct Stack *new_stack = malloc(size_limit * (sizeof(new_stack->stack_array) + sizeof(int) * 2));
   struct Stack *new_stack = malloc(sizeof(struct Stack));
   new_stack->size_limit = size_limit;
   new_stack->top = 0;
@@ -67,12 +66,19 @@ int main(int argc, char *argv[]) {
   int i = 0;
   int current_item = 0;
   
-  struct Stack *test_stack = Stack_create(10);
-  for (i = 1; i < argc; i++) {
+  if (argc < 3) {
+    printf("Need int_stack.c, stack_size, [items]\n");
+    exit(1);
+  }
+    
+  int stack_size = atoi(argv[1]);
+  
+  struct Stack *test_stack = Stack_create(stack_size);
+  for (i = 2; i < argc; i++) {
     Stack_push(test_stack, atoi(argv[i]));
   }
 
-  for (i = 1; i < argc; i++) {
+  for (i = 2; i < argc; i++) {
     current_item = Stack_pop(test_stack);
     printf("Current_item: %d\n", current_item);
   }
