@@ -72,10 +72,7 @@ int main(int argc, char *argv[]) {
   int i = 0;
   int current_item = 0;
   
-  if (argc < 2) {
-    printf("Need stack.c, [items]\n");
-    exit(1);
-  }
+  check(argc > 1, "USAGE: stack.c NUMS");
     
   int stack_size = argc - 1;
   
