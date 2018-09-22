@@ -14,40 +14,35 @@ struct Stack {
   int *stack_array;
 };
 
-void Stack_destroy(struct Stack *stack);
-
-void die(char *message, struct Stack *stack) {
-  if (errno)
-    perror(message);
-  else
-    printf("ERROR: %s\n", message);
-  Stack_destroy(stack);
-  exit(1);
-}
-
 void Stack_push(struct Stack *stack, int next_item) {
   /* Pushes next integer onto array. */
-  if (stack->top >= stack->size_limit)
-    die("Stack overflow", stack);
+  check(stack->top < stack->size_limit, "Stack overflow");
 
   stack->stack_array[stack->top] = next_item;
   stack->top++;
+  return;
+ error:
+  exit(1);
 }
 
 int Stack_pop(struct Stack *stack) {
   /* Pops most recently added integer off array. */
-  if (stack->top <= 0)
-    die("Stack underflow", stack);
+  check(stack->top > 0, "Stack underflow");
 
   int last_item = stack->stack_array[stack->top - 1]; // prevent off-by-one error
   stack->top--;
   
   return last_item;
+
+ error:
+  exit(1);
 }
 
 struct Stack *Stack_create(int size_limit) {
   /* Initialises memory for Stack struct and returns pointer. */
   struct Stack *new_stack = malloc(sizeof(struct Stack));
+  check_mem(new_stack);
+  
   new_stack->size_limit = size_limit;
   new_stack->top = 0;
   new_stack->stack_array = malloc(sizeof(new_stack->stack_array) * size_limit);
@@ -72,7 +67,10 @@ int main(int argc, char *argv[]) {
   int i = 0;
   int current_item = 0;
   
-  check(argc > 1, "USAGE: stack.c NUMS");
+  if (argc < 2) {
+    printf("USAGE: stack.c NUMS\n");
+    exit(1);
+  }
     
   int stack_size = argc - 1;
   
@@ -92,5 +90,6 @@ int main(int argc, char *argv[]) {
   return 0;
 
  error:
+  Stack_destroy(test_stack);
   return 1;
 }
