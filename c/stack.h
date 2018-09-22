@@ -6,6 +6,12 @@
  * to make them available to other programs.
  */
 
+struct Stack {
+  int size_limit;
+  int top;
+  int *stack_array;
+}
+
 void Stack_destroy(struct Stack *stack);
 
 struct Stack *Stack_create(int size limit);
