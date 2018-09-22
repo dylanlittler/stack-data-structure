@@ -10,11 +10,11 @@ struct Stack {
   int size_limit;
   int top;
   int *stack_array;
-}
+};
 
 void Stack_destroy(struct Stack *stack);
 
-struct Stack *Stack_create(int size limit);
+struct Stack *Stack_create(int size_limit);
 
 void Stack_push(struct Stack *stack, int next_item);
 
