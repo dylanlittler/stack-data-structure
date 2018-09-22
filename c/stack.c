@@ -72,21 +72,21 @@ int main(int argc, char *argv[]) {
   int i = 0;
   int current_item = 0;
   
-  if (argc < 3) {
-    printf("Need int_stack.c, stack_size, [items]\n");
+  if (argc < 2) {
+    printf("Need stack.c, [items]\n");
     exit(1);
   }
     
-  int stack_size = atoi(argv[1]);
+  int stack_size = argc - 1;
   
   struct Stack *test_stack = Stack_create(stack_size);
   check(test_stack != NULL, "Stack not initialised");
   
-  for (i = 2; i < argc; i++) {
+  for (i = 1; i < argc; i++) {
     Stack_push(test_stack, atoi(argv[i]));
   }
 
-  for (i = 2; i < argc; i++) {
+  for (i = 1; i < argc; i++) {
     current_item = Stack_pop(test_stack);
     printf("Current_item: %d\n", current_item);
   }
