@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
+#include "dbg.h"
 
 /* This program implements a stack data structure. */
 
@@ -50,7 +51,12 @@ struct Stack *Stack_create(int size_limit) {
   new_stack->size_limit = size_limit;
   new_stack->top = 0;
   new_stack->stack_array = malloc(sizeof(new_stack->stack_array) * size_limit);
+  check_mem(new_stack->stack_array);
+
   return new_stack;
+
+ error:
+  return NULL; // calling function should check for NULL
 }
 
 void Stack_destroy(struct Stack *stack) {
@@ -74,6 +80,8 @@ int main(int argc, char *argv[]) {
   int stack_size = atoi(argv[1]);
   
   struct Stack *test_stack = Stack_create(stack_size);
+  check(test_stack != NULL, "Stack not initialised");
+  
   for (i = 2; i < argc; i++) {
     Stack_push(test_stack, atoi(argv[i]));
   }
@@ -85,4 +93,7 @@ int main(int argc, char *argv[]) {
 
   Stack_destroy(test_stack);
   return 0;
+
+ error:
+  return 1;
 }
