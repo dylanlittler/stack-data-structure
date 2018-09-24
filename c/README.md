@@ -5,3 +5,5 @@ using a struct data structure to add and remove ints.
 The file dbg.h is included, a header file written by Zed Shaw using
 the MIT licence. This file defines macros for checking inputs
 and printing debugging information.
+The file minunit.h, in tests directory, is also a header file written by Zed Shaw
+using MIT licence. This file defines macros for a unit test system.
