@@ -60,5 +60,6 @@ void Stack_destroy(struct Stack *stack) {
     if (stack->stack_array)
       free(stack->stack_array);
     free(stack);
+    stack = NULL;
   }
 }
