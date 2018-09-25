@@ -13,10 +13,10 @@ public:
   Stack (int);
   
   void StackPush(int next_item) {
-    //if (top + 1 >= size_limit) {
-    //cout << "Stack overflow" << endl;
-    //exit(1);
-    //}
+    if (top >= size_limit) {
+      cout << "Stack overflow" << endl;
+      exit(1);
+    }
     stack_array[top] = next_item;
     top++;
   }
@@ -46,6 +46,10 @@ int main(int argc, char *argv[]) {
   Stack test_stack (argc - 1);
   int i;
 
+  if (argc < 2) {
+    cout << "USAGE: stack NUMS";
+    exit(1);
+  
   for (i = 1; i < argc; i++) {
     test_stack.StackPush(stoi(argv[i]));
   }
