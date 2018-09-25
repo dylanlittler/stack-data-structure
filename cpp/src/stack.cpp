@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 /**
  * This program is an implementation of a stack data structure
@@ -7,29 +8,23 @@ using namespace std;
 
 class Stack {
   int size_limit, top;
-  int *stack_array;
+  vector<int> stack_array;
 public:
   
   Stack (int);
 
-  void StackDestroy() {
-    delete [] stack_array;
-  }
-  
   void StackPush(int next_item) {
     if (top >= size_limit) {
       cout << "Stack overflow" << endl;
-      Stack::StackDestroy();
       exit(1);
     }
-    stack_array[top] = next_item;
+    stack_array.push_back(next_item);
     top++;
   }
 
   int StackPop() {
     if (top - 1 < 0) {
       cout << "Stack underflow" << endl;
-      Stack::StackDestroy();
       exit(1);
     }
     top--;
@@ -41,7 +36,6 @@ public:
 Stack::Stack (int sl) {
   size_limit = sl;
   top = 0;
-  stack_array = new int[sl];
 }
 
 int main(int argc, char *argv[]) {
@@ -49,7 +43,7 @@ int main(int argc, char *argv[]) {
   int i;
 
   if (argc < 2) {
-    cout << "USAGE: stack NUMS";
+    cout << "USAGE: stack NUMS" << endl;
     exit(1);
   }
   
@@ -62,6 +56,5 @@ int main(int argc, char *argv[]) {
     cout << test_stack.StackPop() << endl;
   }
 
-  test_stack.StackDestroy();
   return 0;
 }
