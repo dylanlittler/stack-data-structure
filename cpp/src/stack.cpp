@@ -11,10 +11,15 @@ class Stack {
 public:
   
   Stack (int);
+
+  void StackDestroy() {
+    delete [] stack_array;
+  }
   
   void StackPush(int next_item) {
     if (top >= size_limit) {
       cout << "Stack overflow" << endl;
+      Stack::StackDestroy();
       exit(1);
     }
     stack_array[top] = next_item;
@@ -24,15 +29,12 @@ public:
   int StackPop() {
     if (top - 1 < 0) {
       cout << "Stack underflow" << endl;
+      Stack::StackDestroy();
       exit(1);
     }
     top--;
     int last_item = stack_array[top];
     return last_item;
-  }
-
-  void StackDestroy() {
-    delete [] stack_array;
   }
 };
 
@@ -49,6 +51,7 @@ int main(int argc, char *argv[]) {
   if (argc < 2) {
     cout << "USAGE: stack NUMS";
     exit(1);
+  }
   
   for (i = 1; i < argc; i++) {
     test_stack.StackPush(stoi(argv[i]));
