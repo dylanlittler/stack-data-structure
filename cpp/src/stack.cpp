@@ -13,22 +13,26 @@ public:
   Stack (int);
   
   void StackPush(int next_item) {
-    if (top + 1 >= size_limit) {
-      cout << "Stack overflow" << endl;
-      exit(1);
-    }
+    //if (top + 1 >= size_limit) {
+    //cout << "Stack overflow" << endl;
+    //exit(1);
+    //}
     stack_array[top] = next_item;
     top++;
   }
 
   int StackPop() {
-    if (top - 1 <= 0) {
+    if (top - 1 < 0) {
       cout << "Stack underflow" << endl;
       exit(1);
     }
     top--;
     int last_item = stack_array[top];
     return last_item;
+  }
+
+  void StackDestroy() {
+    delete [] stack_array;
   }
 };
 
@@ -48,8 +52,9 @@ int main(int argc, char *argv[]) {
 
   for (i = argc - 1; i > 0; i--) {
     cout << "Current item: ";
-    cout << test_stack.StackPop();
+    cout << test_stack.StackPop() << endl;
   }
 
+  test_stack.StackDestroy();
   return 0;
 }
