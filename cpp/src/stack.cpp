@@ -8,27 +8,27 @@ using namespace std;
 
 class Stack {
   int size_limit, top;
-  vector<int> stack_array;
+  vector<int> stack_vector;
 public:
   
   Stack (int);
 
   void StackPush(int next_item) {
-    if (top >= size_limit) {
-      cout << "Stack overflow" << endl;
-      exit(1);
-    }
-    stack_array.push_back(next_item);
+    //if (top >= size_limit) {
+    //  cout << "Stack overflow" << endl;
+    //  exit(1);
+    //}
+    stack_vector.push_back(next_item);
     top++;
   }
 
   int StackPop() {
-    if (top - 1 < 0) {
-      cout << "Stack underflow" << endl;
-      exit(1);
-    }
+    //if (top - 1 < 0) {
+    //  cout << "Stack underflow" << endl;
+    //  exit(1);
+    //}
     top--;
-    int last_item = stack_array[top];
+    int last_item = stack_vector[top];
     return last_item;
   }
 };
