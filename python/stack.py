@@ -7,6 +7,7 @@ class Stack:
     def __init__(self, stack_size):
         self.stack_array = [0 for x in range(stack_size)]
         self.top = 0
+        self.stack_size = stack_size
     
     def stack_push(self, item):
         self.stack_array[self.top] = item
@@ -16,3 +17,6 @@ class Stack:
         self.top -= 1
         last_item = self.stack_array[self.top]
         return last_item
+
+    def print_stack_size(self):
+        print(self.stack_size)

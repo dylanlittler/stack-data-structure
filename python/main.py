@@ -14,3 +14,5 @@ for item in args.integers:
 
 for item in test_stack.stack_array:
     print("Current item: {}".format(test_stack.stack_pop()))
+
+
