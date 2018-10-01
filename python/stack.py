@@ -18,5 +18,3 @@ class Stack:
         last_item = self.stack_array[self.top]
         return last_item
 
-    def print_stack_size(self):
-        print(self.stack_size)

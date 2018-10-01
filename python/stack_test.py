@@ -10,7 +10,7 @@ for item in test_items:
 class TestStackMethods(unittest.TestCase):
 
     def test_pop(self):
-        index = len(test_items)
+        index = len(test_items) - 1
         for i in range(len(test_items)):
             self.assertEqual(test_stack.stack_pop(), test_items[index])
             index -= 1
